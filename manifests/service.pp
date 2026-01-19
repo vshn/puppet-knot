@@ -5,17 +5,17 @@
 #
 class knot::service {
 
-  if $::knot::service_manage {
+  if $knot::service_manage {
     # check config before managing service
     exec { 'check_knot_configuration':
-      command     => "/usr/sbin/knotc -c ${::knot::main_config_file} conf-check",
+      command     => "/usr/sbin/knotc -c ${knot::main_config_file} conf-check",
       refreshonly => true,
-    } ->
-    service { $::knot::service_name:
-      ensure     => $::knot::service_ensure,
-      enable     => $::knot::service_enable,
-      restart    => $::knot::service_restart,
-      status     => $::knot::service_status,
+    }
+    -> service { $knot::service_name:
+      ensure     => $knot::service_ensure,
+      enable     => $knot::service_enable,
+      restart    => $knot::service_restart,
+      status     => $knot::service_status,
       hasstatus  => true,
       hasrestart => true,
     }

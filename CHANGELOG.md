@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2.3.0] - 2026-01-19
+### Changed
+* Cleanup code formatting issues
+* Replace validate_* calls with type declarations
+* Replace legacy facts
+* Update repository configuration (ubuntu/debian packages are now served from
+  the same repository)
+
 ## [2.2.0] - 2016-09-16
 ### Added
 * Support for DNSSEC configuration in Knot > 2.3.x
