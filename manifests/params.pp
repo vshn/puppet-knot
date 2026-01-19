@@ -12,25 +12,10 @@ class knot::params {
       $service_name = 'knot'
       $service_user = 'knot'
       $service_group = 'knot'
-      # Choose repo location according to LSB distribution id
-      # Only used when manage_package_repo and on a Debian based OS
-      case $facts['os']['distro']['id'] {
-        'Debian': {
-          $package_repo_location = 'http://deb.knot-dns.cz/debian/'
-          $package_repo_repos = 'main'
-          $package_repo_key = 'DF3D585DB8F0EB658690A554AC0E47584A7A714D'
-          $package_repo_key_src = 'http://deb.knot-dns.cz/debian/apt.key'
-        }
-        'Ubuntu': {
-          $package_repo_location = 'http://ppa.launchpad.net/cz.nic-labs/knot-dns/ubuntu'
-          $package_repo_repos = 'main'
-          $package_repo_key = '52463488670E69A092007C24F2331238F9C59A45'
-          $package_repo_key_src = undef
-        }
-        default: {
-          fail("LSB distid ${facts['os']['distro']['id']} not supported")
-        }
-      }
+      $package_repo_location = 'https://pkg.labs.nic.cz/knot-dns'
+      $package_repo_repos = 'main'
+      $package_repo_key = '9C71D59CD4CE8BD2966A7A3EAB6A303124019B64'
+      $package_repo_key_src = undef
     }
     'RedHat': {
       $package_name = 'knot'
