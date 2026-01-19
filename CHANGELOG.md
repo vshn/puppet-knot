@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [2.3.1] - 2026-01-19
+* No-change tag, as 2.3.0 existed previously without changelog entry
+
 ## [2.3.0] - 2026-01-19
 ### Changed
 * Cleanup code formatting issues
