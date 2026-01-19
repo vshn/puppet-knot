@@ -6,7 +6,7 @@
 class knot::params {
 
   # OS specific parameters
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian': {
       $package_name = 'knot'
       $service_name = 'knot'
@@ -14,7 +14,7 @@ class knot::params {
       $service_group = 'knot'
       # Choose repo location according to LSB distribution id
       # Only used when manage_package_repo and on a Debian based OS
-      case $::lsbdistid {
+      case $facts['os']['distro']['id'] {
         'Debian': {
           $package_repo_location = 'http://deb.knot-dns.cz/debian/'
           $package_repo_repos = 'main'
@@ -28,7 +28,7 @@ class knot::params {
           $package_repo_key_src = undef
         }
         default: {
-          fail("LSB distid ${::lsbdistid} not supported")
+          fail("LSB distid ${facts['os']['distro']['id']} not supported")
         }
       }
     }
@@ -43,7 +43,7 @@ class knot::params {
       $package_repo_key_src = undef
     }
     default: {
-      fail("OS family ${::osfamily} not supported")
+      fail("OS family ${facts['os']['family']} not supported")
     }
   }
 
