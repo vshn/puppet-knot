@@ -3,6 +3,7 @@
 ## [2.3.0] - 2026-01-19
 ### Changed
 * Cleanup code formatting issues
+* Replace validate_* calls with type declarations
 
 ## [2.2.0] - 2016-09-16
 ### Added
