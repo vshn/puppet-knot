@@ -5,38 +5,38 @@
 class knot::config {
 
   # get variables from the toplevel manifest for usage in the template
-  $config_file = $::knot::main_config_file
-  $default_storage = $::knot::default_storage
-  $manage_zones = $::knot::manage_zones
-  $service_group = $::knot::service_group
-  $service_user = $::knot::service_user
-  $zone_defaults = $::knot::zone_defaults
-  $zones_config_file = $::knot::zones_config_file
-  $zones_config_template = $::knot::zones_config_template
+  $config_file = $knot::main_config_file
+  $default_storage = $knot::default_storage
+  $manage_zones = $knot::manage_zones
+  $service_group = $knot::service_group
+  $service_user = $knot::service_user
+  $zone_defaults = $knot::zone_defaults
+  $zones_config_file = $knot::zones_config_file
+  $zones_config_template = $knot::zones_config_template
 
   # knot configuration sections
-  $acls = $::knot::acls
-  $control = $::knot::control
-  $keys = $::knot::keys
-  $modules = $::knot::modules
-  $policies = $::knot::policies
-  $remotes = $::knot::remotes
-  $templates = $::knot::templates
-  $zones = $::knot::zones
+  $acls = $knot::acls
+  $control = $knot::control
+  $keys = $knot::keys
+  $modules = $knot::modules
+  $policies = $knot::policies
+  $remotes = $knot::remotes
+  $templates = $knot::templates
+  $zones = $knot::zones
 
   # merge two hashes:
   # * the configuration hash from the user calling $knot::config_*
   # * the hash containing the default values in $knot::params::config_*
   # When there is a duplicate key, the key in the user specified hash (rightmost) "wins"
   # Note: this is not a deep merge, it merges only the toplevel keys
-  $server = merge($::knot::params::server, $::knot::server)
-  $log = merge($::knot::params::log, $::knot::log)
+  $server = merge($knot::params::server, $knot::server)
+  $log = merge($knot::params::log, $knot::log)
 
-  if $::knot::manage_user {
-    user { $::knot::service_user:
+  if $knot::manage_user {
+    user { $knot::service_user:
       ensure  => present,
       comment => 'Knot Service User',
-      home    => $::knot::default_storage,
+      home    => $knot::default_storage,
       shell   => '/bin/false',
       system  => true,
     }

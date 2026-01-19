@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [2.3.0] - 2026-01-19
+### Changed
+* Cleanup code formatting issues
+
 ## [2.2.0] - 2016-09-16
 ### Added
 * Support for DNSSEC configuration in Knot > 2.3.x

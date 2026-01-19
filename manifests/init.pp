@@ -23,21 +23,21 @@ class knot (
   # package installation handling
   $manage_package_repo = false,
   $package_ensure = 'installed',
-  $package_name = $::knot::params::package_name,
-  $package_repo_key = $::knot::params::package_repo_key,
-  $package_repo_key_src = $::knot::params::package_repo_key_src,
-  $package_repo_location = $::knot::params::package_repo_location,
-  $package_repo_repos = $::knot::params::package_repo_repos,
+  $package_name = $knot::params::package_name,
+  $package_repo_key = $knot::params::package_repo_key,
+  $package_repo_key_src = $knot::params::package_repo_key_src,
+  $package_repo_location = $knot::params::package_repo_location,
+  $package_repo_repos = $knot::params::package_repo_repos,
   # system service configuration
   $manage_user = true,
   $service_enable = true,
   $service_ensure = 'running',
-  $service_group = $::knot::params::service_group,
+  $service_group = $knot::params::service_group,
   $service_manage = true,
-  $service_name = $::knot::params::service_name,
+  $service_name = $knot::params::service_name,
   $service_restart = '/usr/sbin/knotc reload',
   $service_status = '/usr/sbin/knotc status',
-  $service_user = $::knot::params::service_user,
+  $service_user = $knot::params::service_user,
   # knot specific configuration
   $default_storage = '/var/lib/knot',
   $main_config_file = '/etc/knot/knot.conf',
@@ -57,7 +57,7 @@ class knot (
   $server = { 'listen' => [ '0.0.0.0@53', '::@53' ] },
   $templates = {},
   $zones = {},
-) inherits ::knot::params {
+) inherits knot::params {
 
   # package installation handling
   validate_bool($manage_package_repo)
@@ -99,12 +99,12 @@ class knot (
   validate_hash($templates)
   validate_hash($zones)
 
-  class { '::knot::install': } ->
-  class { '::knot::config': } ~>
-  class { '::knot::service': }
+  class { 'knot::install': }
+  -> class { 'knot::config': }
+  ~> class { 'knot::service': }
 
-  contain ::knot::install
-  contain ::knot::config
-  contain ::knot::service
+  contain knot::install
+  contain knot::config
+  contain knot::service
 
 }
